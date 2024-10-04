@@ -3464,6 +3464,7 @@ export class SelectQueryBuilder<Entity extends ObjectLiteral>
                 queryRunner,
             )
                 .select(`DISTINCT ${querySelects.join(", ")}`)
+                .addSelect(Object.keys(orderBys)) // required for SELECT DISTINCT + ORDER BY
                 .addSelect(selects)
                 .from(
                     `(${originalQuery
